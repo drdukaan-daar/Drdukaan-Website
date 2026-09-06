@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { api } from "@/lib/api";
+import { STRINGS, LANGS } from "@/i18n";
 
 const SiteContext = createContext(null);
 
@@ -78,7 +79,27 @@ export function SiteProvider({ children }) {
     }
   }, []);
 
-  const value = { ...data, loaded, whatsappUrl, track };
+  const [lang, setLangState] = useState(() => (typeof localStorage !== "undefined" && localStorage.getItem("dd_lang")) || "en");
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    try {
+      localStorage.setItem("dd_lang", lang);
+    } catch (e) {
+      /* noop */
+    }
+  }, [lang]);
+  const setLang = useCallback((l) => setLangState(l), []);
+  const t = useCallback((key, fallback) => STRINGS[lang]?.[key] ?? fallback ?? key, [lang]);
+  const tw = useCallback(
+    (field, fallback) => {
+      const w = data.settings?.website || {};
+      if (lang !== "en" && w[`${field}_${lang}`]) return w[`${field}_${lang}`];
+      if (lang !== "en" && STRINGS[lang]?.[field]) return STRINGS[lang][field];
+      return w[field] ?? fallback;
+    },
+    [lang, data.settings]
+  );
+  const value = { ...data, loaded, whatsappUrl, track, lang, setLang, t, tw, LANGS };
   return <SiteContext.Provider value={value}>{children}</SiteContext.Provider>;
 }
 

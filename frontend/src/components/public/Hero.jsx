@@ -52,7 +52,7 @@ function Counter({ value, suffix = "", label }) {
 
 function HeroLeadForm() {
     const navigate = useNavigate();
-    const { industries, track } = useSite();
+    const { industries, track, t } = useSite();
     const [form, setForm] = useState({ business_name: "", business_type: "", phone: "" });
     const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -76,13 +76,13 @@ function HeroLeadForm() {
             className="glass-card glow-border rounded-2xl p-5 sm:p-6 w-full max-w-md"
             data-testid="hero-mini-form"
         >
-            <p className="font-display font-semibold text-base mb-1">Tell us about your business.</p>
-            <p className="text-xs text-slate-400 mb-4">Get a digital growth plan built for your business.</p>
+            <p className="font-display font-semibold text-base mb-1">{t("mini_form_title", "Tell us about your business.")}</p>
+            <p className="text-xs text-slate-400 mb-4">{t("mini_form_sub", "Get a digital growth plan built for your business.")}</p>
             <div className="flex flex-col gap-3">
                 <input
                     value={form.business_name}
                     onChange={set("business_name")}
-                    placeholder="Business Name"
+                    placeholder={t("form_business", "Business Name")}
                     aria-label="Business Name"
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-sm placeholder:text-slate-500 focus:border-dd-cyan/60 focus:outline-none transition-colors"
                     data-testid="hero-form-input-business"
@@ -94,7 +94,7 @@ function HeroLeadForm() {
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-sm text-slate-300 focus:border-dd-cyan/60 focus:outline-none transition-colors appearance-none"
                     data-testid="hero-form-select-type"
                 >
-                    <option value="" className="bg-dd-surface">Business Type</option>
+                    <option value="" className="bg-dd-surface">{t("form_business_type", "Business Type")}</option>
                     {(industries || []).map((i) => (
                         <option key={i.slug} value={i.name} className="bg-dd-surface">{i.name}</option>
                     ))}
@@ -103,14 +103,14 @@ function HeroLeadForm() {
                 <input
                     value={form.phone}
                     onChange={set("phone")}
-                    placeholder="Phone / WhatsApp"
+                    placeholder={t("form_phone", "Phone / WhatsApp")}
                     aria-label="Phone or WhatsApp"
                     inputMode="tel"
                     className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-sm placeholder:text-slate-500 focus:border-dd-cyan/60 focus:outline-none transition-colors"
                     data-testid="hero-form-input-phone"
                 />
                 <GlowButton type="submit" variant="primary" className="w-full" testId="hero-form-submit-button">
-                    Show Me My Growth Options <DdIcon name="ArrowRight" className="w-4 h-4" />
+                    {t("mini_form_button", "Show Me My Growth Options")} <DdIcon name="ArrowRight" className="w-4 h-4" />
                 </GlowButton>
             </div>
         </motion.form>
@@ -118,8 +118,7 @@ function HeroLeadForm() {
 }
 
 export default function Hero() {
-    const { settings, whatsappUrl, track } = useSite();
-    const w = settings?.website || {};
+    const { whatsappUrl, track, t, tw } = useSite();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
     const sceneY = useTransform(scrollYProgress, [0, 1], [0, 120]);
@@ -144,15 +143,15 @@ export default function Hero() {
                     >
                         <span className="h-1.5 w-1.5 rounded-full bg-dd-cyan animate-pulse" />
                         <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-dd-cyan">
-                            {w.hero_eyebrow || "Digital Growth Partner for Local Businesses"}
+                            {tw("hero_eyebrow", "Digital Growth Partner for Local Businesses")}
                         </span>
                     </motion.div>
 
                     <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]" data-testid="hero-headline">
-                        <MaskedLine delay={0.15}>{w.hero_title_1 || "Take Your Local Business"}</MaskedLine>
-                        <MaskedLine delay={0.3}>{w.hero_title_2 || "From Offline to"}</MaskedLine>
+                        <MaskedLine delay={0.15}>{tw("hero_title_1", "Take Your Local Business")}</MaskedLine>
+                        <MaskedLine delay={0.3}>{tw("hero_title_2", "From Offline to")}</MaskedLine>
                         <MaskedLine delay={0.45}>
-                            <span className="glow-text">{w.hero_title_accent || "Online."}</span>
+                            <span className="glow-text">{tw("hero_title_accent", "Online.")}</span>
                         </MaskedLine>
                     </h1>
 
@@ -163,7 +162,7 @@ export default function Hero() {
                         className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl"
                         data-testid="hero-subtitle"
                     >
-                        {w.hero_subtitle || "We build the digital systems, marketing and growth strategy that help local businesses attract more customers."}
+                        {tw("hero_subtitle", "We build the digital systems, marketing and growth strategy that help local businesses attract more customers.")}
                     </motion.p>
 
                     <motion.p
@@ -173,7 +172,7 @@ export default function Hero() {
                         className="font-mono text-xs sm:text-sm tracking-[0.28em] uppercase text-slate-500"
                         data-testid="hero-growth-statement"
                     >
-                        {w.growth_statement || "Build. Launch. Market. Measure. Grow."}
+                        {tw("growth_statement", "Build. Launch. Market. Measure. Grow.")}
                     </motion.p>
 
                     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95, duration: 0.6 }} className="flex flex-wrap items-center gap-4">
@@ -185,7 +184,7 @@ export default function Hero() {
                                 document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
                             }}
                         >
-                            {w.hero_primary_cta || "Get a Free Digital Growth Consultation"}
+                            {tw("hero_primary_cta", "Get a Free Digital Growth Consultation")}
                         </GlowButton>
                         <GlowButton
                             variant="whatsapp"
@@ -194,14 +193,14 @@ export default function Hero() {
                             testId="hero-cta-whatsapp"
                             onClick={() => track("whatsapp_click", "hero")}
                         >
-                            <DdIcon name="MessageCircle" className="w-4 h-4" /> {w.hero_secondary_cta || "Chat on WhatsApp"}
+                            <DdIcon name="MessageCircle" className="w-4 h-4" /> {tw("hero_secondary_cta", "Chat on WhatsApp")}
                         </GlowButton>
                         <button
                             onClick={scrollToServices}
                             className="group flex items-center gap-2 text-sm text-slate-400 hover:text-dd-cyan transition-colors"
                             data-testid="hero-cta-explore"
                         >
-                            {w.hero_tertiary_cta || "Explore Our Services"}
+                            {tw("hero_tertiary_cta", "Explore Our Services")}
                             <DdIcon name="ArrowRight" className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </button>
                     </motion.div>
@@ -229,10 +228,10 @@ export default function Hero() {
                 className="relative mx-auto max-w-7xl px-5 sm:px-8 pb-14"
             >
                 <div className="glass-card rounded-2xl py-6 px-2 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5" data-testid="hero-stats-bar">
-                    <Counter value={9} label="Growth Services" />
-                    <Counter value={10} label="Industries Served" />
-                    <Counter value={8} label="Step Growth System" />
-                    <Counter value={100} suffix="%" label="Measurable Results" />
+                    <Counter value={9} label={t("stat_services", "Growth Services")} />
+                    <Counter value={10} label={t("stat_industries", "Industries Served")} />
+                    <Counter value={8} label={t("stat_steps", "Step Growth System")} />
+                    <Counter value={100} suffix="%" label={t("stat_measurable", "Measurable Results")} />
                 </div>
             </motion.div>
         </section>

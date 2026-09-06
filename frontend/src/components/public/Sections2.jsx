@@ -8,7 +8,7 @@ import { useSite } from "@/context/SiteContext";
 // ---------------- Industries ----------------
 
 export function IndustriesSelector() {
-    const { industries, track } = useSite();
+    const { industries, track, t } = useSite();
     const [active, setActive] = useState(0);
     const current = industries?.[active];
 
@@ -18,8 +18,8 @@ export function IndustriesSelector() {
                 <SectionHeading
                     num={4}
                     chapter="Industries"
-                    title="Built for Businesses Like Yours."
-                    sub="Select your industry and see exactly how we solve its digital problems."
+                    title={t("industries_title", "Built for Businesses Like Yours.")}
+                    sub={t("industries_sub", "Select your industry and see exactly how we solve its digital problems.")}
                 />
                 <div className="grid lg:grid-cols-[0.9fr_1.4fr] gap-8">
                     <div className="grid grid-cols-2 lg:grid-cols-1 gap-2" role="tablist" aria-label="Industries">
@@ -54,11 +54,11 @@ export function IndustriesSelector() {
                                 data-testid="industry-panel"
                             >
                                 <div>
-                                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-rose-400 mb-2">The Problem</p>
+                                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-rose-400 mb-2">{t("ind_problem", "The Problem")}</p>
                                     <p className="text-slate-300 leading-relaxed text-sm sm:text-base">{current.problem}</p>
                                 </div>
                                 <div>
-                                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-dd-cyan mb-3">The Digital Solution</p>
+                                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-dd-cyan mb-3">{t("ind_solution", "The Digital Solution")}</p>
                                     <div className="flex flex-wrap gap-2">
                                         {(current.solutions || []).map((s) => (
                                             <span key={s} className="rounded-full border border-dd-cyan/25 bg-dd-cyan/[0.06] px-3.5 py-1.5 text-xs sm:text-sm text-slate-200">
@@ -91,7 +91,7 @@ export function IndustriesSelector() {
                                 </div>
                                 <div className="pt-2">
                                     <GlowButton to={`/industries/${current.slug}`} variant="ghost" testId="industry-panel-cta" onClick={() => track("cta_click", `industry_${current.slug}`)}>
-                                        See what we can build for your business <DdIcon name="ArrowRight" className="w-4 h-4" />
+                                        {t("ind_panel_cta", "See what we can build for your business")} <DdIcon name="ArrowRight" className="w-4 h-4" />
                                     </GlowButton>
                                 </div>
                             </motion.div>
@@ -109,6 +109,7 @@ const ECO_NODES = ["Website", "Google", "SEO", "Ads", "WhatsApp", "App", "E-Comm
 const ECO_COLORS = ["#00F0FF", "#0066FF", "#8B5CF6", "#0066FF", "#25D366", "#8B5CF6", "#00F0FF", "#00F0FF", "#25D366", "#0066FF"];
 
 export function Ecosystem() {
+    const { t } = useSite();
     const nodes = useMemo(
         () =>
             ECO_NODES.map((label, i) => {
@@ -126,8 +127,8 @@ export function Ecosystem() {
                     align="center"
                     num={5}
                     chapter="The System"
-                    title="One Business. One Connected Ecosystem."
-                    sub="Every channel connected. Every enquiry tracked. Every decision backed by data."
+                    title={t("ecosystem_title", "One Business. One Connected Ecosystem.")}
+                    sub={t("ecosystem_sub", "Every channel connected. Every enquiry tracked. Every decision backed by data.")}
                 />
                 <div className="relative w-full max-w-3xl aspect-square sm:aspect-[16/10]">
                     <svg viewBox="0 0 100 62" className="absolute inset-0 w-full h-full" aria-hidden="true">
@@ -175,7 +176,7 @@ export function Ecosystem() {
                 </div>
                 <Reveal>
                     <p className="font-display text-xl sm:text-2xl font-semibold text-slate-200 text-center" data-testid="ecosystem-tagline">
-                        All connected. <span className="text-dd-cyan">All measurable.</span> Built for growth.
+                        {t("ecosystem_tagline_a", "All connected.")} <span className="text-dd-cyan">{t("ecosystem_tagline_b", "All measurable.")}</span> {t("ecosystem_tagline_c", "Built for growth.")}
                     </p>
                 </Reveal>
             </div>
@@ -229,7 +230,7 @@ function ChartTooltip({ active, payload, label }) {
 }
 
 export function AnalyticsShowcase() {
-    const { track } = useSite();
+    const { track, t } = useSite();
     return (
         <section className="relative py-24 sm:py-32 bg-dd-surface/30" data-testid="analytics-section">
             <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col gap-12">
@@ -237,8 +238,8 @@ export function AnalyticsShowcase() {
                     <SectionHeading
                         num={6}
                         chapter="Measurement"
-                        title="Stop Guessing. Start Measuring."
-                        sub="Every digital growth decision should be backed by data. This is what your monthly growth dashboard looks like."
+                        title={t("analytics_title", "Stop Guessing. Start Measuring.")}
+                        sub={t("analytics_sub", "Every digital growth decision should be backed by data. This is what your monthly growth dashboard looks like.")}
                     />
                     <DemoBadge label="DEMO DATA" />
                 </div>

@@ -4,7 +4,7 @@ import { DdIcon } from "./kit";
 import { useSite } from "@/context/SiteContext";
 
 export default function Footer() {
-    const { settings, services, industries, whatsappUrl, track } = useSite();
+    const { settings, services, industries, whatsappUrl, track, t, tw } = useSite();
     const contact = settings?.contact || {};
     const wa = settings?.whatsapp || {};
     const year = new Date().getFullYear();
@@ -28,7 +28,7 @@ export default function Footer() {
                             <span className="text-dd-cyan">.</span>
                         </span>
                     </Link>
-                    <p className="text-slate-400 text-sm leading-relaxed max-w-xs">{settings?.website?.footer_tagline || "Digital Growth Partner for Local Businesses."}</p>
+                    <p className="text-slate-400 text-sm leading-relaxed max-w-xs">{tw("footer_tagline", "Digital Growth Partner for Local Businesses.")}</p>
                     <div className="flex flex-col gap-2 text-sm text-slate-400">
                         {(contact.locations || []).map((loc) => (
                             <span key={loc} className="flex items-center gap-2">
@@ -60,11 +60,11 @@ export default function Footer() {
                     )}
                 </div>
 
-                <FooterCol title="Services" links={(services || []).slice(0, 7).map((s) => ({ label: s.name, to: `/services/${s.slug}` }))} testPrefix="footer-service" />
-                <FooterCol title="Industries" links={(industries || []).slice(0, 7).map((i) => ({ label: i.name, to: `/industries/${i.slug}` }))} testPrefix="footer-industry" />
+                <FooterCol title={t("footer_services", "Services")} links={(services || []).slice(0, 7).map((s) => ({ label: s.name, to: `/services/${s.slug}` }))} testPrefix="footer-service" />
+                <FooterCol title={t("footer_industries", "Industries")} links={(industries || []).slice(0, 7).map((i) => ({ label: i.name, to: `/industries/${i.slug}` }))} testPrefix="footer-industry" />
                 <div className="flex flex-col gap-6">
                     <FooterCol
-                        title="Company"
+                        title={t("footer_company", "Company")}
                         links={[
                             { label: "About", to: "/about" },
                             { label: "How We Grow", to: "/process" },
@@ -75,7 +75,7 @@ export default function Footer() {
                         testPrefix="footer-company"
                     />
                     <FooterCol
-                        title="Resources"
+                        title={t("footer_resources", "Resources")}
                         links={[
                             { label: "Pricing", to: "/pricing" },
                             { label: "FAQ", to: "/#faq" },
@@ -90,7 +90,7 @@ export default function Footer() {
             <div className="border-t border-white/5">
                 <div className="mx-auto max-w-7xl px-5 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <p className="font-mono text-xs text-slate-500" data-testid="footer-copyright">
-                        © {year} Dr Dukaan. All Rights Reserved.
+                        © {year} Dr Dukaan. {t("rights", "All Rights Reserved.")}
                     </p>
                     <p className="font-mono text-xs text-slate-600">Build. Launch. Market. Measure. Grow.</p>
                 </div>

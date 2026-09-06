@@ -10,7 +10,7 @@ import { api, formatApiError } from "@/lib/api";
 // ---------------- Case Studies ----------------
 
 export function CaseStudiesSection({ limit }) {
-    const { caseStudies, track } = useSite();
+    const { caseStudies, track, t } = useSite();
     const items = limit ? (caseStudies || []).slice(0, limit) : caseStudies || [];
     return (
         <section className="relative py-24 sm:py-32" data-testid="case-studies-section">
@@ -19,8 +19,8 @@ export function CaseStudiesSection({ limit }) {
                     <SectionHeading
                         num={7}
                         chapter="Proof of System"
-                        title="See the Growth System in Action."
-                        sub="Example projects showing how the Dr Dukaan system works for different businesses. Demo projects — illustrative, not client claims."
+                        title={t("case_title", "See the Growth System in Action.")}
+                        sub={t("case_sub", "Example projects showing how the Dr Dukaan system works for different businesses. Demo projects — illustrative, not client claims.")}
                     />
                     <DemoBadge label="DEMO PROJECTS" />
                 </div>
@@ -65,13 +65,13 @@ export function CaseStudiesSection({ limit }) {
 // ---------------- Testimonials ----------------
 
 export function TestimonialsSection() {
-    const { testimonials } = useSite();
+    const { testimonials, t } = useSite();
     if (!testimonials?.length) return null;
     return (
         <section className="relative py-20 sm:py-24 bg-dd-surface/30" data-testid="testimonials-section">
             <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col gap-10">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-                    <SectionHeading eyebrow="What Clients Say" title="Trusted by Businesses Like Yours." />
+                    <SectionHeading eyebrow="What Clients Say" title={t("testimonials_title", "Trusted by Businesses Like Yours.")} />
                     <DemoBadge label="DEMO TESTIMONIALS" />
                 </div>
                 <div className="grid md:grid-cols-3 gap-5">
@@ -104,7 +104,7 @@ export function TestimonialsSection() {
 // ---------------- Pricing ----------------
 
 export function PricingSection() {
-    const { pricingPlans, whatsappUrl, track } = useSite();
+    const { pricingPlans, whatsappUrl, track, t } = useSite();
     return (
         <section className="relative py-24 sm:py-32" data-testid="pricing-section">
             <div className="pointer-events-none absolute top-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-dd-violet/[0.07] blur-[130px]" />
@@ -113,8 +113,8 @@ export function PricingSection() {
                     align="center"
                     num={8}
                     chapter="Pricing"
-                    title="Simple Packages. Serious Growth."
-                    sub="Every business is different, so we quote for your goals — not a generic rate card. Tell us where you want to go."
+                    title={t("pricing_title", "Simple Packages. Serious Growth.")}
+                    sub={t("pricing_sub", "Every business is different, so we quote for your goals — not a generic rate card. Tell us where you want to go.")}
                 />
                 <div className="grid md:grid-cols-3 gap-6 items-stretch">
                     {(pricingPlans || []).map((plan, i) => (
@@ -181,7 +181,7 @@ export function PricingSection() {
 // ---------------- FAQ ----------------
 
 export function FaqSection() {
-    const { faqs } = useSite();
+    const { faqs, t } = useSite();
     if (!faqs?.length) return null;
     return (
         <section id="faq" className="relative py-24 sm:py-32 bg-dd-surface/30" data-testid="faq-section">
@@ -190,8 +190,8 @@ export function FaqSection() {
                     align="center"
                     num={9}
                     chapter="FAQ"
-                    title="Questions? Good. Here Are Honest Answers."
-                    sub="Straight answers for business owners — no jargon, no unrealistic promises."
+                    title={t("faq_title", "Questions? Good. Here Are Honest Answers.")}
+                    sub={t("faq_sub", "Straight answers for business owners — no jargon, no unrealistic promises.")}
                 />
                 <Accordion type="single" collapsible className="flex flex-col gap-3" data-testid="faq-accordion">
                     {faqs.map((f, i) => (
@@ -213,7 +213,7 @@ export function FaqSection() {
 const BUDGETS = ["Just exploring", "Under ₹15,000 / month", "₹15,000 – ₹40,000 / month", "₹40,000 – ₹1,00,000 / month", "Above ₹1,00,000 / month"];
 
 export function LeadFormSection({ source = "quote-form" }) {
-    const { services, industries, whatsappUrl, track } = useSite();
+    const { services, industries, whatsappUrl, track, t } = useSite();
     const empty = { name: "", business_name: "", phone: "", whatsapp: "", email: "", business_type: "", current_website: "", budget: "", message: "" };
     const [form, setForm] = useState(empty);
     const [selected, setSelected] = useState([]);
@@ -261,16 +261,16 @@ export function LeadFormSection({ source = "quote-form" }) {
                     <SectionHeading
                         num={10}
                         chapter="Get Started"
-                        title="Let's Build Your Digital Growth Plan."
-                        sub="Tell us about your business. We'll respond with practical growth options — usually within one business day."
+                        title={t("leadform_title", "Let's Build Your Digital Growth Plan.")}
+                        sub={t("leadform_sub", "Tell us about your business. We'll respond with practical growth options — usually within one business day.")}
                     />
                     <ul className="flex flex-col gap-3">
-                        {["No pressure, no jargon — a real conversation", "Clear options matched to your budget", "You keep full control of every decision"].map((t) => (
-                            <li key={t} className="flex items-center gap-3 text-sm text-slate-300">
+                        {[t("lf_b1", "No pressure, no jargon — a real conversation"), t("lf_b2", "Clear options matched to your budget"), t("lf_b3", "You keep full control of every decision")].map((txt) => (
+                            <li key={txt} className="flex items-center gap-3 text-sm text-slate-300">
                                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-dd-cyan/10 border border-dd-cyan/30">
                                     <DdIcon name="Check" className="w-3.5 h-3.5 text-dd-cyan" />
                                 </span>
-                                {t}
+                                {txt}
                             </li>
                         ))}
                     </ul>
@@ -282,34 +282,34 @@ export function LeadFormSection({ source = "quote-form" }) {
                             <span className="flex h-16 w-16 items-center justify-center rounded-full bg-dd-wa/15 border border-dd-wa/40">
                                 <DdIcon name="CheckCircle2" className="w-8 h-8 text-dd-wa" />
                             </span>
-                            <h3 className="font-display text-2xl font-bold">We've got it, {form.name.split(" ")[0]}.</h3>
+                            <h3 className="font-display text-2xl font-bold">{t("form_success_title", "We've got it")}, {form.name.split(" ")[0]}.</h3>
                             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-                                Your growth request is in. Want a faster response? Message us on WhatsApp right now.
+                                {t("form_success_sub", "Your growth request is in. Want a faster response? Message us on WhatsApp right now.")}
                             </p>
                             <GlowButton variant="whatsapp" href={whatsappUrl("quote_message")} external testId="lead-success-whatsapp" onClick={() => track("whatsapp_click", "lead_success")}>
-                                <DdIcon name="MessageCircle" className="w-4 h-4" /> Continue on WhatsApp
+                                <DdIcon name="MessageCircle" className="w-4 h-4" /> {t("form_success_whatsapp", "Continue on WhatsApp")}
                             </GlowButton>
                         </div>
                     ) : (
                         <form onSubmit={submit} className="glass-card glow-border rounded-3xl p-6 sm:p-9 flex flex-col gap-4" data-testid="lead-form" noValidate>
                             <div className="grid sm:grid-cols-2 gap-4">
-                                <input value={form.name} onChange={set("name")} placeholder="Your Name *" aria-label="Your name" required className={inputCls} data-testid="lead-input-name" />
-                                <input value={form.business_name} onChange={set("business_name")} placeholder="Business Name" aria-label="Business name" className={inputCls} data-testid="lead-input-business" />
-                                <input value={form.phone} onChange={set("phone")} placeholder="Phone *" aria-label="Phone" required inputMode="tel" className={inputCls} data-testid="lead-input-phone" />
-                                <input value={form.whatsapp} onChange={set("whatsapp")} placeholder="WhatsApp Number" aria-label="WhatsApp number" inputMode="tel" className={inputCls} data-testid="lead-input-whatsapp" />
-                                <input value={form.email} onChange={set("email")} type="email" placeholder="Email" aria-label="Email" className={inputCls} data-testid="lead-input-email" />
+                                <input value={form.name} onChange={set("name")} placeholder={`${t("form_name", "Your Name")} *`} aria-label="Your name" required className={inputCls} data-testid="lead-input-name" />
+                                <input value={form.business_name} onChange={set("business_name")} placeholder={t("form_business", "Business Name")} aria-label="Business name" className={inputCls} data-testid="lead-input-business" />
+                                <input value={form.phone} onChange={set("phone")} placeholder={`${t("form_phone", "Phone")} *`} aria-label="Phone" required inputMode="tel" className={inputCls} data-testid="lead-input-phone" />
+                                <input value={form.whatsapp} onChange={set("whatsapp")} placeholder={t("form_whatsapp", "WhatsApp Number")} aria-label="WhatsApp number" inputMode="tel" className={inputCls} data-testid="lead-input-whatsapp" />
+                                <input value={form.email} onChange={set("email")} type="email" placeholder={t("form_email", "Email")} aria-label="Email" className={inputCls} data-testid="lead-input-email" />
                                 <select value={form.business_type} onChange={set("business_type")} aria-label="Business type" className={`${inputCls} appearance-none text-slate-300`} data-testid="lead-select-business-type">
-                                    <option value="" className="bg-dd-surface">Business Type</option>
+                                    <option value="" className="bg-dd-surface">{t("form_business_type", "Business Type")}</option>
                                     {(industries || []).map((i) => (
                                         <option key={i.slug} value={i.name} className="bg-dd-surface">{i.name}</option>
                                     ))}
                                     <option value="Other" className="bg-dd-surface">Other</option>
                                 </select>
                             </div>
-                            <input value={form.current_website} onChange={set("current_website")} placeholder="Current Website (if any)" aria-label="Current website" className={inputCls} data-testid="lead-input-website" />
+                            <input value={form.current_website} onChange={set("current_website")} placeholder={t("form_website", "Current Website (if any)")} aria-label="Current website" className={inputCls} data-testid="lead-input-website" />
 
                             <div>
-                                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500 mb-3">Services You're Interested In</p>
+                                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500 mb-3">{t("form_services", "Services You're Interested In")}</p>
                                 <div className="flex flex-wrap gap-2" data-testid="lead-services-select">
                                     {(services || []).map((s) => {
                                         const on = selected.includes(s.name);
@@ -332,13 +332,13 @@ export function LeadFormSection({ source = "quote-form" }) {
                             </div>
 
                             <select value={form.budget} onChange={set("budget")} aria-label="Monthly marketing budget" className={`${inputCls} appearance-none text-slate-300`} data-testid="lead-select-budget">
-                                <option value="" className="bg-dd-surface">Monthly Marketing Budget</option>
+                                <option value="" className="bg-dd-surface">{t("form_budget", "Monthly Marketing Budget")}</option>
                                 {BUDGETS.map((b) => (
                                     <option key={b} value={b} className="bg-dd-surface">{b}</option>
                                 ))}
                             </select>
 
-                            <textarea value={form.message} onChange={set("message")} placeholder="Tell us about your business and goals..." aria-label="Message" rows={4} className={`${inputCls} resize-none`} data-testid="lead-input-message" />
+                            <textarea value={form.message} onChange={set("message")} placeholder={t("form_message", "Tell us about your business and goals...")} aria-label="Message" rows={4} className={`${inputCls} resize-none`} data-testid="lead-input-message" />
 
                             {/* honeypot */}
                             <input value={hp} onChange={(e) => setHp(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" name="company_hp" />
@@ -352,15 +352,15 @@ export function LeadFormSection({ source = "quote-form" }) {
                             <GlowButton type="submit" variant="primary" className="w-full" testId="lead-form-submit-button">
                                 {status === "submitting" ? (
                                     <>
-                                        <DdIcon name="Loader2" className="w-4 h-4 animate-spin" /> Sending...
+                                        <DdIcon name="Loader2" className="w-4 h-4 animate-spin" /> {t("form_sending", "Sending...")}
                                     </>
                                 ) : (
                                     <>
-                                        Get My Quote <DdIcon name="ArrowRight" className="w-4 h-4" />
+                                        {t("form_submit", "Get My Quote")} <DdIcon name="ArrowRight" className="w-4 h-4" />
                                     </>
                                 )}
                             </GlowButton>
-                            <p className="text-center text-xs text-slate-500">We respect your privacy. Your details are used only to respond to your enquiry.</p>
+                            <p className="text-center text-xs text-slate-500">{t("form_privacy", "We respect your privacy. Your details are used only to respond to your enquiry.")}</p>
                         </form>
                     )}
                 </Reveal>
@@ -372,7 +372,7 @@ export function LeadFormSection({ source = "quote-form" }) {
 // ---------------- Contact ----------------
 
 export function ContactSection() {
-    const { settings, whatsappUrl, track } = useSite();
+    const { settings, whatsappUrl, track, t } = useSite();
     const contact = settings?.contact || {};
     const wa = settings?.whatsapp || {};
     return (
@@ -381,7 +381,7 @@ export function ContactSection() {
                 <SectionHeading
                     num={11}
                     chapter="Contact"
-                    title="Talk to a Real Growth Partner."
+                    title={t("contact_title", "Talk to a Real Growth Partner.")}
                     sub={contact.service_area || "Serving businesses remotely across India."}
                 />
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -430,8 +430,7 @@ export function ContactSection() {
 // ---------------- Final CTA ----------------
 
 export function FinalCta() {
-    const { settings, whatsappUrl, track } = useSite();
-    const w = settings?.website || {};
+    const { whatsappUrl, track, tw, t } = useSite();
     return (
         <section className="relative py-28 sm:py-40 overflow-hidden" data-testid="final-cta-section">
             <div className="pointer-events-none absolute inset-0 grid-bg opacity-50" />
@@ -439,14 +438,14 @@ export function FinalCta() {
             <div className="relative mx-auto max-w-4xl px-5 sm:px-8 flex flex-col items-center text-center gap-8">
                 <Reveal>
                     <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]" data-testid="final-cta-title">
-                        {w.final_cta_title_1 || "Your Business Is Already Growing Offline."}
+                        {tw("final_cta_title_1", "Your Business Is Already Growing Offline.")}
                         <br />
-                        <span className="glow-text">{w.final_cta_title_2 || "Let's Make It Grow Online."}</span>
+                        <span className="glow-text">{tw("final_cta_title_2", "Let's Make It Grow Online.")}</span>
                     </h2>
                 </Reveal>
                 <Reveal delay={0.15}>
                     <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
-                        {w.final_cta_subtitle || "Tell us where your business is today. We'll help you identify the digital opportunities that can move it forward."}
+                        {tw("final_cta_subtitle", "Tell us where your business is today. We'll help you identify the digital opportunities that can move it forward.")}
                     </p>
                 </Reveal>
                 <Reveal delay={0.25} className="flex flex-wrap justify-center gap-4">
@@ -458,10 +457,10 @@ export function FinalCta() {
                             document.getElementById("quote")?.scrollIntoView({ behavior: "smooth" });
                         }}
                     >
-                        Get a Free Digital Growth Consultation
+                        {t("hero_primary_cta", "Get a Free Digital Growth Consultation")}
                     </GlowButton>
                     <GlowButton variant="whatsapp" href={whatsappUrl("default_message")} external testId="final-cta-whatsapp" onClick={() => track("whatsapp_click", "final_cta")}>
-                        <DdIcon name="MessageCircle" className="w-4 h-4" /> Chat on WhatsApp
+                        <DdIcon name="MessageCircle" className="w-4 h-4" /> {t("chat_whatsapp", "Chat on WhatsApp")}
                     </GlowButton>
                 </Reveal>
             </div>

@@ -19,9 +19,12 @@ function setPath(obj, path, value) {
     return clone;
 }
 
-export function SettingsEditor({ section, title, subtitle, fields, note }) {
+export function SettingsEditor({ section, title, subtitle, fields, note, languages = false }) {
     const [form, setForm] = useState(null);
     const [saving, setSaving] = useState(false);
+    const [langTab, setLangTab] = useState("en");
+    const effFields =
+        languages && langTab !== "en" ? fields.map((f) => ({ ...f, name: `${f.name}_${langTab}`, label: `${f.label} (${langTab.toUpperCase()})` })) : fields;
 
     const load = useCallback(() => {
         api.get(`/admin/settings/${section}`)
@@ -52,9 +55,33 @@ export function SettingsEditor({ section, title, subtitle, fields, note }) {
                 <h1 className="font-display text-2xl font-bold text-white">{title}</h1>
                 {subtitle && <p className="text-sm text-slate-400 mt-1">{subtitle}</p>}
             </div>
+            {languages && (
+                <div className="flex items-center gap-2" data-testid="content-lang-tabs">
+                    {[
+                        { code: "en", label: "English" },
+                        { code: "hi", label: "हिंदी" },
+                        { code: "te", label: "తెలుగు" },
+                    ].map((l) => (
+                        <button
+                            type="button"
+                            key={l.code}
+                            onClick={() => setLangTab(l.code)}
+                            className={`rounded-full px-5 py-2 text-sm border transition-colors ${
+                                langTab === l.code ? "border-dd-cyan/60 text-dd-cyan bg-dd-cyan/10" : "border-white/10 text-slate-400 hover:text-white"
+                            }`}
+                            data-testid={`content-lang-${l.code}`}
+                        >
+                            {l.label}
+                        </button>
+                    ))}
+                    {langTab !== "en" && (
+                        <span className="text-xs text-slate-500 ml-2">Translate any field — blank fields fall back to the built-in default translation, then English.</span>
+                    )}
+                </div>
+            )}
             {note && <p className="rounded-xl border border-dd-cyan/20 bg-dd-cyan/[0.05] px-4 py-3 text-xs text-slate-300">{note}</p>}
             <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 grid sm:grid-cols-2 gap-4">
-                {fields.map((f) => (
+                {effFields.map((f) => (
                     <Field key={f.name} field={f} value={getPath(form, f.name)} onChange={(v) => setForm((prev) => setPath(prev, f.name, v))} testId={`settings-${section}-${f.name.replace(/\./g, "-")}`} />
                 ))}
             </div>
@@ -73,7 +100,8 @@ export function WebsiteContentPage() {
         <SettingsEditor
             section="website"
             title="Website Content"
-            subtitle="Edit hero, headlines and CTA copy. Changes go live immediately — no code edits needed."
+            subtitle="Edit hero, headlines and CTA copy. Use the language tabs to provide Hindi and Telugu versions. Changes go live immediately — no code edits needed."
+            languages
             fields={[
                 { name: "brand_name", label: "Brand Name" },
                 { name: "tagline", label: "Tagline" },

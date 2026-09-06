@@ -1,4 +1,5 @@
 import re
+import asyncio
 from datetime import datetime, timezone, timedelta
 from typing import List, Optional
 
@@ -102,6 +103,10 @@ async def create_lead(lead: LeadIn, request: Request):
     await db.leads.insert_one(doc)
     doc.pop("_id", None)
     await log_activity("public", "lead_created", "leads", doc["id"], f"{doc['name']} — {doc.get('business_name') or 'n/a'}")
+    if not duplicate:
+        from emailer import notify_new_lead
+
+        asyncio.create_task(notify_new_lead(doc))
     return {"ok": True, "id": doc["id"], "duplicate": bool(duplicate)}
 
 

@@ -5,15 +5,15 @@ import { DdIcon, Reveal, SectionHeading, GlowButton, Chapter } from "./kit";
 import { useSite } from "@/context/SiteContext";
 
 export function TrustServices() {
-    const { services, track } = useSite();
+    const { services, track, t } = useSite();
     return (
         <section id="services" className="relative py-24 sm:py-32" data-testid="trust-services-section">
             <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col gap-14">
                 <SectionHeading
                     num={1}
                     chapter="The Ecosystem"
-                    title="Everything Your Business Needs to Grow Online."
-                    sub="One digital partner instead of managing multiple agencies, freelancers and platforms."
+                    title={t("services_title", "Everything Your Business Needs to Grow Online.")}
+                    sub={t("services_sub", "One digital partner instead of managing multiple agencies, freelancers and platforms.")}
                 />
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {(services || []).map((s, i) => (
@@ -43,8 +43,7 @@ export function TrustServices() {
 }
 
 export function GrowthSystem() {
-    const { settings } = useSite();
-    const w = settings?.website || {};
+    const { tw } = useSite();
     const parts = ["Website", "Google", "SEO", "Ads", "WhatsApp", "Analytics", "Leads"];
     return (
         <section className="relative py-24 sm:py-32 overflow-hidden" data-testid="growth-system-section">
@@ -53,12 +52,12 @@ export function GrowthSystem() {
                 <Chapter num={2} label="The Difference" />
                 <Reveal>
                     <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-300">
-                        {w.differentiator_title || "We Don't Just Build Your Website."}
+                        {tw("differentiator_title", "We Don't Just Build Your Website.")}
                     </h2>
                 </Reveal>
                 <Reveal delay={0.15}>
                     <p className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight glow-text leading-[1.12]" data-testid="growth-system-statement">
-                        {w.differentiator_statement || "WE BUILD YOUR DIGITAL GROWTH SYSTEM."}
+                        {tw("differentiator_statement", "WE BUILD YOUR DIGITAL GROWTH SYSTEM.")}
                     </p>
                 </Reveal>
                 <Reveal delay={0.25}>
@@ -91,7 +90,7 @@ export function GrowthSystem() {
                 </Reveal>
                 <Reveal delay={0.35}>
                     <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
-                        {w.differentiator_copy || "Launching a website is only the beginning. We help you build the complete digital system around your business and continuously improve it."}
+                        {tw("differentiator_copy", "Launching a website is only the beginning. We help you build the complete digital system around your business and continuously improve it.")}
                     </p>
                 </Reveal>
             </div>
@@ -111,6 +110,7 @@ const JOURNEY_STEPS = [
 ];
 
 export function Journey() {
+    const { t } = useSite();
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.75", "end 0.55"] });
     const scaleY = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
@@ -121,8 +121,8 @@ export function Journey() {
                 <SectionHeading
                     num={3}
                     chapter="The Journey"
-                    title="Your Digital Growth Journey."
-                    sub="Eight deliberate steps. No guesswork, no jargon — a system that compounds."
+                    title={t("journey_title", "Your Digital Growth Journey.")}
+                    sub={t("journey_sub", "Eight deliberate steps. No guesswork, no jargon — a system that compounds.")}
                 />
                 <div ref={ref} className="relative pl-8 sm:pl-0">
                     <div className="absolute left-[7px] sm:left-1/2 top-0 bottom-0 w-px bg-white/8 sm:-translate-x-1/2" />

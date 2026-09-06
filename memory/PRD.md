@@ -26,10 +26,15 @@ Build a production-quality, responsive full-stack web application for Dr Dukaan 
 - API: bootstrap, login, me, lead create/patch/delete, settings PUT round-trip, service CRUD, 401 protection, rate-limit 429, honeypot, sitemap, blog.
 - UI: hero render + 3D canvas, all 14 homepage sections, industry tab interaction, lead form end-to-end success, admin login → dashboard stats, leads list → detail, mobile menu, mobile overflow fixed (390px clean).
 
+## Implemented (2026-09-06, round 2)
+- Lead email alerts: every new enquiry triggers an instant branded email to the business inbox (contact settings email, default drdukaan@gmail.com) via Emergent-managed Resend — fire-and-forget, never blocks or breaks lead capture, guardrail-gated templates.
+- Real case-study imagery: gym, retail, hospital and wholesale demo projects now use matching photos (DB + seed updated).
+- Language layer: EN / हिंदी / తెలుగు switcher in navbar (desktop + mobile), translated nav, hero, section headings, CTAs, lead form and footer; Admin → Website Content has language tabs so every CMS headline can be overridden per language; choice persists in localStorage and sets <html lang>.
+
 ## Backlog (prioritized)
 - P0: (none blocking)
-- P1: Email notification to admin on new lead (Resend); force-password-change interstitial on first login flag; canonical/OG injection per route.
-- P2: Hindi/Telugu content support (CMS is content-driven already); automated monthly PDF/email reports; Google Business Profile link in contact cards.
+- P1: Force-password-change interstitial on first login; canonical/OG injection per route; translate inner-page body copy (About/Process/service detail pages currently keep English body text with translated chrome).
+- P2: Automated monthly PDF/email reports; Google Business Profile link in contact cards; per-service/industry translated content fields.
 - P3 (future architecture hooks ready): client portal, invoices, subscription management, Google Ads / Meta Ads API sync, WhatsApp automation.
 
 ## Next tasks

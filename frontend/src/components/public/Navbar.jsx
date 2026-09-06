@@ -5,20 +5,20 @@ import { DdIcon } from "./kit";
 import { useSite } from "@/context/SiteContext";
 
 const LINKS = [
-    { label: "Home", to: "/" },
-    { label: "Services", to: "/services" },
-    { label: "Industries", to: "/industries" },
-    { label: "How We Grow", to: "/process" },
-    { label: "Case Studies", to: "/case-studies" },
-    { label: "Pricing", to: "/pricing" },
-    { label: "FAQ", to: "/#faq" },
-    { label: "Contact", to: "/contact" },
+    { key: "nav_home", label: "Home", to: "/" },
+    { key: "nav_services", label: "Services", to: "/services" },
+    { key: "nav_industries", label: "Industries", to: "/industries" },
+    { key: "nav_process", label: "How We Grow", to: "/process" },
+    { key: "nav_case_studies", label: "Case Studies", to: "/case-studies" },
+    { key: "nav_pricing", label: "Pricing", to: "/pricing" },
+    { key: "nav_faq", label: "FAQ", to: "/#faq" },
+    { key: "nav_contact", label: "Contact", to: "/contact" },
 ];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
-    const { whatsappUrl, track, settings } = useSite();
+    const { whatsappUrl, track, settings, t, lang, setLang, LANGS } = useSite();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -62,25 +62,41 @@ export default function Navbar() {
                 <div className="hidden lg:flex items-center gap-7">
                     {LINKS.map((l) =>
                         l.to.includes("#") ? (
-                            <Link key={l.label} to={l.to} className="text-sm text-slate-300 hover:text-dd-cyan transition-colors duration-200" data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
-                                {l.label}
+                            <Link key={t(l.key, l.label)} to={l.to} className="text-sm text-slate-300 hover:text-dd-cyan transition-colors duration-200" data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
+                                {t(l.key, l.label)}
                             </Link>
                         ) : (
                             <NavLink
-                                key={l.label}
+                                key={t(l.key, l.label)}
                                 to={l.to}
                                 className={({ isActive }) =>
                                     `text-sm transition-colors duration-200 ${isActive ? "text-dd-cyan" : "text-slate-300 hover:text-dd-cyan"}`
                                 }
                                 data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
                             >
-                                {l.label}
+                                {t(l.key, l.label)}
                             </NavLink>
                         )
                     )}
                 </div>
 
                 <div className="hidden lg:flex items-center gap-3">
+                    <div className="flex items-center rounded-full border border-white/10 p-0.5" data-testid="language-switcher">
+                        {LANGS.map((l) => (
+                            <button
+                                key={l.code}
+                                onClick={() => setLang(l.code)}
+                                aria-label={l.name}
+                                aria-pressed={lang === l.code}
+                                className={`rounded-full px-2.5 py-1 font-mono text-[10px] transition-colors ${
+                                    lang === l.code ? "bg-dd-cyan text-[#06222b]" : "text-slate-400 hover:text-white"
+                                }`}
+                                data-testid={`lang-switch-${l.code}`}
+                            >
+                                {t(l.key, l.label)}
+                            </button>
+                        ))}
+                    </div>
                     <a
                         href={whatsappUrl("default_message")}
                         target="_blank"
@@ -98,7 +114,7 @@ export default function Navbar() {
                         className="rounded-full bg-dd-cyan px-6 py-2.5 font-display font-semibold text-sm text-[#06222b] transition-[box-shadow,transform] duration-300 hover:shadow-[0_0_28px_rgba(0,240,255,0.45)] hover:-translate-y-0.5 active:scale-95"
                         data-testid="nav-get-quote-button"
                     >
-                        Get Quote
+                        {t("get_quote", "Get Quote")}
                     </button>
                 </div>
 
@@ -125,15 +141,31 @@ export default function Navbar() {
                     >
                         <div className="px-6 py-6 flex flex-col gap-1">
                             {LINKS.map((l, i) => (
-                                <motion.div key={l.label} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
+                                <motion.div key={t(l.key, l.label)} initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }}>
                                     <Link to={l.to} className="block py-3 font-display text-lg text-slate-200 hover:text-dd-cyan border-b border-white/5" data-testid={`mobile-nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}>
-                                        {l.label}
+                                        {t(l.key, l.label)}
                                     </Link>
                                 </motion.div>
                             ))}
-                            <div className="flex gap-3 pt-5">
+                            <div className="flex justify-center gap-2 pt-5" data-testid="mobile-language-switcher">
+                                {LANGS.map((l) => (
+                                    <button
+                                        key={l.code}
+                                        onClick={() => setLang(l.code)}
+                                        aria-label={l.name}
+                                        aria-pressed={lang === l.code}
+                                        className={`rounded-full px-4 py-2 font-mono text-xs border transition-colors ${
+                                            lang === l.code ? "border-dd-cyan/60 bg-dd-cyan/15 text-dd-cyan" : "border-white/10 text-slate-400"
+                                        }`}
+                                        data-testid={`mobile-lang-switch-${l.code}`}
+                                    >
+                                        {l.name}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="flex gap-3 pt-4">
                                 <button onClick={goQuote} className="flex-1 rounded-full bg-dd-cyan py-3.5 font-display font-semibold text-sm text-[#06222b]" data-testid="mobile-get-quote-button">
-                                    Get Quote
+                                    {t("get_quote", "Get Quote")}
                                 </button>
                                 <a
                                     href={whatsappUrl("default_message")}
