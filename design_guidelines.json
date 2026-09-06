@@ -1,0 +1,112 @@
+{
+  "project_name": "DR DUKAAN (drdukaan.com)",
+  "positioning": "Digital Growth Partner for Local Businesses in India",
+  "archetype": "THE PERFORMANCE PRO / HIGH CONTRAST DARK TECH",
+  "theme": {
+    "type": "Dark-first premium visual system (with clean SaaS neutral/dark admin)",
+    "background": "#090A0F",
+    "surface": "#12141F",
+    "card_bg": "rgba(22, 25, 38, 0.7)",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#94A3B8",
+    "text_muted": "#64748B",
+    "primary_accent": "#00F0FF",
+    "electric_blue": "#0066FF",
+    "cyan": "#00F0FF",
+    "secondary_glow": "#8B5CF6",
+    "whatsapp_green": "#25D366",
+    "border_glow": "rgba(0, 240, 255, 0.2)",
+    "card_border": "rgba(255, 255, 255, 0.08)"
+  },
+  "typography": {
+    "headline_font": "Outfit, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "mono_font": "JetBrains Mono, monospace",
+    "hierarchy": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "card_h3": "text-xl sm:text-2xl font-semibold",
+      "subtitle": "text-base sm:text-lg text-slate-400 font-normal leading-relaxed",
+      "eyebrow": "text-xs font-mono uppercase tracking-[0.2em] text-cyan-400"
+    },
+    "rules": [
+      "Headlines MUST use Outfit with tracking-tight",
+      "Do NOT use Inter for main headings; Inter is reserved for body text and form labels",
+      "Use JetBrains Mono for badge indicators, manifesto chapter numbers (01, 02), and metrics"
+    ]
+  },
+  "components_structure": {
+    "public_site": [
+      "Header / Navbar (sticky compact with glassmorphism bg-slate-950/80 backdrop-blur-xl, brand logo, nav links, WhatsApp quick action, Admin dashboard link, Get Started CTA)",
+      "Kinetic Hero Section (Masked line-by-line headline reveal, 3D Storefront ecosystem canvas with 2D fallback, hero conversion mini-form with instant lead capture, stats counter bar)",
+      "Manifesto Chapter 01: Trust & Reality Check ('We don't just build websites, we build your digital growth engine')",
+      "Services Ecosystem Grid (9 core services: 1. High-Converting Storefront/Website, 2. Google Business Profile & Local SEO, 3. WhatsApp Business Automation, 4. Customer Review Engine, 5. Hyper-Local Ads & Meta/Google, 6. Micro-SaaS Business App, 7. Inventory & Order Management, 8. Automated Lead Follow-up, 9. Business Intelligence & Growth Analytics)",
+      "Differentiator Showcase ('Traditional Agency vs DR DUKAAN Growth System')",
+      "8-Step Scroll Journey Timeline (01 Discover → 02 Audit → 03 Strategy → 04 Digital Setup → 05 Traffic Launch → 06 Lead System → 07 Automation → 08 Scale & Grow)",
+      "Interactive Industry Selector (10 Indian local verticals: Retail & Kirana, Clothing & Boutique, Hardware & Electronics, Restaurants & Bakeries, Clinics & Labs, Auto Workshops, Salons & Spas, Jewelry & Luxury, Coaching & Schools, Real Estate & Services)",
+      "3D/2D Growth Ecosystem Interactive Canvas / Visual Flowchart",
+      "SaaS Analytics Dashboard Showcase (Interactive mockup with real chart toggles, GA4 & Lead Source integration visuals, clearly labeled 'DEMO DATA')",
+      "Demo Case Studies Gallery (3 realistic Indian local success stories: Hyderabad Sweet House, Kurnool Hardware Mart, Jubilee Hills Dental Clinic with before/after revenue metrics & 'DEMO PROJECT' badges)",
+      "3-Tier Transparent Pricing (Starter / Growth Partner / Enterprise Dominance with Get Quote CTAs & feature breakdown)",
+      "High-Converting Multi-Field Lead Form (Name, Business Name, City/Location, Phone/WhatsApp, Industry, Current Digital Presence, Goals)",
+      "Contact Section (Hyderabad HQ & Kurnool Regional Office, Map embeds/visuals, Direct WhatsApp & Phone links)",
+      "FAQ Accordion (Addressing non-technical Indian shop owners' top questions: cost, time to go live, tech skills needed, maintenance, ROI)",
+      "Dramatic Final Kinetic CTA Section",
+      "Footer (Links, Legal, Local City SEO tags, Contact info, Copyright)",
+      "Floating WhatsApp Button (persistent bottom-right with pulse glow)",
+      "Editorial Slow Marquee (Subtle drifting keywords: Local SEO • WhatsApp Commerce • Google My Business • Hyper-Local Meta Ads • POS Integration • Instant Leads)"
+    ],
+    "admin_dashboard": [
+      "Admin Sidebar (Dark charcoal background, collapsible, navigation: Overview, Leads CRM, Clients, CMS Blog Manager, Services Manager, Settings, Public Site link)",
+      "Metrics Summary Cards (Total Leads, Active Clients, Monthly Revenue, Conversion Rate, WhatsApp Inquiries)",
+      "Leads Management Table (Status filters: New, Contacted, Proposal Sent, Converted, Closed; search, export, lead detail drawer/modal, status update dropdown)",
+      "Clients Portal Manager (Client name, city, service plan, MRR, renewal date, health score)",
+      "CMS / Blog Editor (Create/Edit post, category, SEO tags, publish status)",
+      "Analytics & Growth Reports (Interactive Recharts charts for Lead velocity, traffic sources, channel split)"
+    ]
+  },
+  "media": {
+    "hero_and_storefronts": [
+      "https://images.pexels.com/photos/26861411/pexels-photo-26861411.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.pexels.com/photos/13369323/pexels-photo-13369323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.unsplash.com/photo-1779861656578-47975f2a5f84?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBzdG9yZSUyMG1hcmtldCUyMGxvY2FsJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzg4NzA3NzQyfDA&ixlib=rb-4.1.0&q=85"
+    ],
+    "entrepreneurs_and_business": [
+      "https://images.unsplash.com/photo-1767499912056-8f9bf8bad682?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBlbnRyZXByZW5ldXIlMjBzaG9wa2VlcGVyJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzg4NzA3NzQyfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1599978395458-d4ce49ea5e56?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwzfHxpbmRpYW4lMjBlbnRyZXByZW5ldXIlMjBzaG9wa2VlcGVyJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzg4NzA3NzQyfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1570841054287-c0c4f1829b36?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBlbnRyZXByZW5ldXIlMjBzaG9wa2VlcGVyJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzg4NzA3NzQyfDA&ixlib=rb-4.1.0&q=85"
+    ],
+    "analytics_and_tech": [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxhbmFseXRpY3MlMjBkYXNoYm9hcmQlMjB0ZWNobm9sb2d5JTIwdGVhbXxlbnwwfHx8fDE3ODg3MDc3NDJ8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHw0fHxhbmFseXRpY3MlMjBkYXNoYm9hcmQlMjB0ZWNobm9sb2d5JTIwdGVhbXxlbnwwfHx8fDE3ODg3MDc3NDJ8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxhbmFseXRpY3MlMjBkYXNoYm9hcmQlMjB0ZWNobm9sb2d5JTIwdGVhbXxlbnwwfHx8fDE3ODg3MDc3NDJ8MA&ixlib=rb-4.1.0&q=85"
+    ]
+  },
+  "motion_and_effects": {
+    "3d_hero": "Three.js / React Three Fiber scene with glowing central storefront geometry and orbiting cyan/violet floating nodes (Website, Google, WhatsApp, Ads, App, SEO, Analytics). Includes smooth auto-rotation and fallback 2D interactive canvas if WebGL fails.",
+    "framer_motion": "Scroll triggered staggered reveals, hover lift on cards, line-by-line masked title reveal on hero load, glowing border pulses.",
+    "smooth_scroll": "Lenis smooth scroll integration on public marketing pages.",
+    "marquee": "Slow editorial ribbon marquee using react-fast-marquee or CSS keyframes with low speed and subtle cyan text drift."
+  },
+  "testing_and_attributes": {
+    "rule": "ALL interactive and key informational elements MUST include a data-testid attribute in kebab-case.",
+    "examples": [
+      "data-testid=\"hero-cta-button\"",
+      "data-testid=\"hero-lead-form-input-phone\"",
+      "data-testid=\"service-card-1\"",
+      "data-testid=\"industry-selector-tab-retail\"",
+      "data-testid=\"pricing-plan-growth-cta\"",
+      "data-testid=\"floating-whatsapp-button\"",
+      "data-testid=\"admin-sidebar-leads-link\"",
+      "data-testid=\"lead-status-filter-dropdown\""
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Build a complete, stunning, high-converting digital growth agency platform for 'DR DUKAAN' (drdukaan.com).",
+    "Implement both the full public marketing website and the admin SaaS dashboard seamlessly.",
+    "Ensure all interactive features work out-of-the-box (lead form submission, demo data toggles, industry selector tabs, pricing calculator/quote modals, contact forms, WhatsApp triggers).",
+    "Ensure zero placeholder URLs are used; all images must come from the media list above.",
+    "Follow the dark-first visual system with electric cyan (#00F0FF) accents, deep charcoal background (#090A0F), and violet secondary glows."
+  ]
+}
